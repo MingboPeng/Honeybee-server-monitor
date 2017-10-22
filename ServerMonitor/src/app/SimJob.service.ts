@@ -31,14 +31,24 @@ export class SimJobService {
       // We're using Angular Http provider to request the data,
       // then on the response it'll map the JSON data to a parsed JS object.
       // Next we process the data and resolve the promise with the new data.
+
+      
       this.http.get(url)
         .map(res => {
-          return res.json()
-        })
-        .subscribe(data => {
-          this.simJob = this.ConvertFromJson(data);
-          resolve(this.simJob);
-        });
+          
+        return res.json()
+      })
+      .subscribe((data) => {
+        this.simJob = this.ConvertFromJson(data);
+        this.simJob.Status = "Running"
+        resolve(this.simJob);
+        },
+        (err) => {
+          this.simJob.Status = "Error"
+          return this.simJob;
+        }
+      );
+      
     });
   }
 

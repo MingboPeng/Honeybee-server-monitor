@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import * as _ from 'underscore';
 import { SimJobService } from './SimJob.service';
 import { SimJob } from './SimJob';
-import { ActivatedRoute, Routes } from '@angular/router';
+import { ActivatedRoute,Router } from '@angular/router';
+import 'rxjs/add/operator/filter';
 
 // const appRoutes: Routes = [
 //   { path: 'RunID', component: AppComponent },
@@ -22,40 +23,42 @@ export class AppComponent implements OnInit {
   info: Array<any>;
   dataId: string;
   title = 'app';
-  returnJson: string;
+  JobStatusMsg: string;
   SimJob: SimJob;
-  sub: any;
+  RunID: string;
 
   constructor(
-    private inJson: SimJobService,
-    // private route: ActivatedRoute
+    private simRun: SimJobService,
+    private route: ActivatedRoute
+    
   ) {
-    
     this.SimJob = new SimJob();
-    
-    
     this.serverURL = "https://demo6383902.mockable.io/HBLive";
-    // this.sub = this.route.params.subscribe(params => {
-    //   this.sub = +params['id'];   //<----- + sign converts string value to number
-    //   console.log(this.sub);
-    // });
+    this.JobStatusMsg = "";
   }
 
   ngOnInit(): void {
-    // this.sub = this.route.snapshot.params['id'];
-    // console.log(this.sub);
+    this.route.queryParams
+    .filter(params => params.RunID)
+      .subscribe(params => {
+        this.RunID = params.RunID;
+        this.serverURL = params.RunID;
+      console.log(params);
+    });
   }
 
   CheckStatus() {
     // console.log(this.serverURL);
-    this.inJson.load( this.serverURL )
+    
+    this.simRun.load( this.serverURL )
     .then( ( data ) => {
       console.log(data);
       this.SimJob = data;
-
-      // this.returnJson = this.SimJob.StatusPercentage.toString();
+      // alert("Failed to connect the server2!")
+      this.JobStatusMsg = this.SimJob.StatusPercentage.toString()+"%";
     }, (error) => {
-      console.log( error );
+      // console.log(error);
+      alert("Failed to connect the server3!")
     });
   }
 
