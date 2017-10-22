@@ -4,8 +4,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { SimJobService } from './SimJob.service';
 import { Http, HttpModule } from '@angular/http';
-import {PopoverModule} from "ngx-popover";
-
+import { PopoverModule } from "ngx-popover";
+import { Routes, RouterModule } from '@angular/router';
+const routes: Routes = [
+  {path: '',  component: AppComponent}
+];
 @NgModule({
   declarations: [
     AppComponent,
@@ -15,7 +18,8 @@ import {PopoverModule} from "ngx-popover";
     BrowserModule,
     HttpModule,
     PopoverModule,
-    FormsModule
+    FormsModule,
+    RouterModule.forRoot(routes)
   ],
   providers: [SimJobService],
   bootstrap: [AppComponent]

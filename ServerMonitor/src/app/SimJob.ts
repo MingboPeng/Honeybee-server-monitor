@@ -7,7 +7,7 @@ import { JobStatus } from './JobStatus.enum';
 export class SimJob {
     JobID: string;
     Simulations: Array<SimChild>;
-    Status: JobStatus;
+    Status: string;
     StatusPercentage: number;
 
 
