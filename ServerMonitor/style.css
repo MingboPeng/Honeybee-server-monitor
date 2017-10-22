@@ -19,18 +19,17 @@ body {
 
 .jumbotron-heading {
   font-weight: 300;
-  padding-left: 25px;
 }
 
 .jumbotron .container {
-
+  max-width: 40rem;
 }
 
 .album {
   min-height: 50rem; /* Can be removed; just added for demo purposes */
   padding-top: 3rem;
   padding-bottom: 3rem;
-  background-color: #fff;
+  background-color: #f7f7f7;
 }
 
 .card {
@@ -73,20 +72,7 @@ footer p {
   
 }
 .tool-box{
- width:100%;background:#fff;    padding: 10px 10px; 
+  height: 150px;width:100%;background:#F8F8F8;    padding: 60px 10px; text-align: center;
 }
 .tool-box h3{
-  font-size: 18px;
-  color: #000;
-  margin-top: 10px;
-}
-img{
-  height: 100px;
-}
-
-.tool-box p{
-  cursor:pointer;
-}
-a{
-  text-decoration: none
 }

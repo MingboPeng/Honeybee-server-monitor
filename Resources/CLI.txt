@@ -1,0 +1,2 @@
+ng build --prod --base-href "https://mingbopeng.github.io/ServerMonitor/"
+angular-cli-ghpages
